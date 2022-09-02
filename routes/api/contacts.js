@@ -1,5 +1,5 @@
 const express = require("express");
-const controllers = require("../../controllers/contacts");
+const { contacts: controllers } = require("../../controllers");
 const router = express.Router();
 const { validationBody, isValidId } = require("../../middlewares");
 const { joiSchema, joiChangeFavorite } = require("../../models/contact");
