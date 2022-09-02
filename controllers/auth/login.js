@@ -1,6 +1,8 @@
 const { Unauthorized } = require("http-errors");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { User } = require("../../models");
+const { SECRET_KEY } = process.env;
 
 const logIn = async (req, res) => {
   const { email, password } = req.body;
@@ -12,7 +14,9 @@ const logIn = async (req, res) => {
   if (!comparePassword) {
     throw new Unauthorized("Password is wrong");
   }
-  const token = "dfvfvdfvfv";
+  const payload = { id: user._id };
+
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "2h" });
   res.json({ token });
 };
 

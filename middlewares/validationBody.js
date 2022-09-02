@@ -3,8 +3,9 @@ const { BadRequest } = require("http-errors");
 const validationBody = (schema) => {
   const func = async (req, _, next) => {
     const { error } = schema.validate(req.body);
+    console.log(req.body);
     if (error) {
-      next(BadRequest("Missing required name field"));
+      next(BadRequest("Missing required name field "));
     }
     next();
   };
