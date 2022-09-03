@@ -36,18 +36,20 @@ const joiRegisterSchema = Joi.object({
   password: Joi.string().required(),
   repeat_password: Joi.ref("password"),
   email: Joi.string().pattern(emailRegexp).required(),
-  //   subscription: Joi.string().valid("starter", "pro", "business"),
-  //   token: Joi.string().required(),
 });
 
 const joiLogInSchema = Joi.object({
   password: Joi.string().required(),
-  email: Joi.string().email().required(),
+  email: Joi.string().pattern(emailRegexp).required(),
+});
+const joiChangeSubscription = Joi.object({
+  subscription: Joi.string().valid("starter", "pro", "business").required(),
 });
 
 const schemas = {
   joiRegisterSchema,
   joiLogInSchema,
+  joiChangeSubscription,
 };
 
 module.exports = {

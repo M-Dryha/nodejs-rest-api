@@ -8,7 +8,7 @@ const {
 } = require("../../middlewares");
 const { joiSchema, joiChangeFavorite } = require("../../models/contact");
 
-router.get("/", controllers.getAll);
+router.get("/", authenticate, controllers.getAll);
 
 router.get("/:id", isValidId, controllers.getById);
 
