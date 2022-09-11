@@ -10,7 +10,7 @@ const { joiSchema, joiChangeFavorite } = require("../../models/contact");
 
 router.get("/", authenticate, controllers.getAll);
 
-router.get("/:id", isValidId, controllers.getById);
+router.get("/:id", authenticate, isValidId, controllers.getById);
 
 router.post(
   "/",
@@ -19,10 +19,11 @@ router.post(
   controllers.addContact
 );
 
-router.delete("/:id", isValidId, controllers.removeById);
+router.delete("/:id", authenticate, isValidId, controllers.removeById);
 
 router.put(
   "/:id",
+  authenticate,
   isValidId,
   validationBody(joiSchema),
   controllers.updateById
@@ -30,6 +31,7 @@ router.put(
 
 router.patch(
   "/:id/favorite",
+  authenticate,
   isValidId,
   validationBody(joiChangeFavorite),
   controllers.updateFavoriteById

@@ -21,6 +21,10 @@ const userSchema = Schema(
       enum: ["starter", "pro", "business"],
       default: "starter",
     },
+    avatarURL: {
+      type: String,
+      required: true,
+    },
     token: {
       type: String,
       default: null,
@@ -34,7 +38,7 @@ const User = model("user", userSchema);
 
 const joiRegisterSchema = Joi.object({
   password: Joi.string().required(),
-  repeat_password: Joi.ref("password"),
+  repeat_password: Joi.string().required().valid(Joi.ref("password")),
   email: Joi.string().pattern(emailRegexp).required(),
 });
 
