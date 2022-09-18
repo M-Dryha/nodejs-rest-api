@@ -1,5 +1,5 @@
 const { Conflict } = require("http-errors");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
 const { User } = require("../../models");
 const { sendEmail } = require("../../helpers");
